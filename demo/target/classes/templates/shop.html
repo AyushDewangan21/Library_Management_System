@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Shop</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #eef2ff;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #0d1b2a;
+        font-size: 32px;
+      }
+
+      table {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      th {
+        background-color: #1d4ed8;
+        color: white;
+        padding: 14px;
+        text-align: left;
+        font-size: 16px;
+      }
+
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 15px;
+        color: #0d1b2a;
+      }
+
+      tr:hover {
+        background-color: #e3e9f8;
+      }
+
+      .btn {
+        padding: 8px 14px;
+        background-color: #1d4ed8;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: 0.2s;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        background-color: #153eaa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Available Books</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Book Name</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="book : ${books}">
+          <td th:text="${book.id}"></td>
+          <td th:text="${book.bookName}"></td>
+          <td th:text="'₹' + ${book.price}"></td>
+
+          <!-- ADD BUTTON -->
+          <td>
+            <a th:href="@{'/buy/' + ${book.id}}" class="btn">Add</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
